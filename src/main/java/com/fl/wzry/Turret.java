@@ -18,7 +18,7 @@ public class Turret extends GameObject{
     //public Turret turretBlueBase;
     public Turret(GameFrame gameFrame) {
         super(gameFrame);
-        setImage("src/main/resources/com/fl/wzry/static/turret.jpg");
+        //setImage("src/main/resources/com/fl/wzry/static/turret.jpg");
         turretList.add(turretRed1 = new TurretRed(gameFrame,1375,775));
         turretList.add(turretRed2 = new TurretRed(gameFrame,900,500));
         turretList.add(turretRed3 = new TurretRed(gameFrame,525,200));
