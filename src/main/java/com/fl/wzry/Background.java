@@ -9,9 +9,6 @@ public class Background extends GameObject {
         super(gameFrame);
     }
 
-    //public void paintSelf(Graphics g){
-    //    g.drawImage(bg,0,0,null);
-    //}
 
     @Override
     public Rectangle getRec() {

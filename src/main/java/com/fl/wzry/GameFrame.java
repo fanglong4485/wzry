@@ -6,13 +6,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class GameFrame extends JFrame {
-    private int windowWidth = 1600;
-    private int windowHeight = 1200;
+    private int windowWidth = 600;
+    private int windowHeight = 400;
 
     Background bg = new Background(this);
 
     Champion player = new Champion(this);
 
+    //双缓冲用，防止闪烁
     private Image offScreenImage = null;
 
 
@@ -21,7 +22,7 @@ public class GameFrame extends JFrame {
         setSize(windowWidth,windowHeight);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
-        setResizable(false);
+        setResizable(true);
         setTitle("方龙的王者");
         setVisible(true);
 
@@ -40,13 +41,14 @@ public class GameFrame extends JFrame {
 
     public void paint(Graphics g){
         if (offScreenImage == null){
+            //加载的图片大小
             offScreenImage = this.createImage(1600,1200);
         }
         Graphics oImage = offScreenImage.getGraphics();
         bg.pantSelf(oImage);
         player.pantSelf(oImage);
-
-        g.drawImage(offScreenImage,0,0,null);
+        //是英雄固定在屏幕中间
+        g.drawImage(offScreenImage,-player.getX() + 300,-player.getY() + 200,null);
     }
 
     public static void main(String[] args) {

@@ -23,8 +23,8 @@ public class Champion extends GameObject{
 public Champion(GameFrame gameFrame) {
     super(gameFrame);
     setImage("src/main/resources/com/fl/wzry/static/champion.jpg");
-    setX(80);
-    setY(80);
+    setX(175);
+    setY(1025);
     setSpd(25);
 }
 
