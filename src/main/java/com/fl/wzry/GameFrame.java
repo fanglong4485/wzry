@@ -11,7 +11,16 @@ public class GameFrame extends JFrame {
 
     Background bg = new Background(this);
 
+    /**
+     * 添加玩家
+     */
     Champion player = new Champion(this);
+
+    /**
+     * 添加小兵
+     */
+    MinionBlue minionBlue = new MinionBlue(this);
+    MinionRed minionRed = new MinionRed(this);
 
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;
@@ -40,6 +49,7 @@ public class GameFrame extends JFrame {
     }
 
     public void paint(Graphics g){
+        //System.out.println("玩家位置："+player.getX() + ","+ player.getY());
         if (offScreenImage == null){
             //加载的图片大小
             offScreenImage = this.createImage(1600,1200);
@@ -47,6 +57,8 @@ public class GameFrame extends JFrame {
         Graphics oImage = offScreenImage.getGraphics();
         bg.pantSelf(oImage);
         player.pantSelf(oImage);
+        minionBlue.pantSelf(oImage);
+        //minionRed.pantSelf(oImage);
         //是英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + 300,-player.getY() + 200,null);
     }
