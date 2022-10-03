@@ -83,7 +83,7 @@ public class GameFrame extends JFrame {
         //minionBlue.pantSelf(oImage);
         //minionRed.pantSelf(oImage);
         //是英雄固定在屏幕中间
-        g.drawImage(offScreenImage,-player.getX() + 300,-player.getY() + 200,null);
+        g.drawImage(offScreenImage,-player.getX() + getWidth()/2,-player.getY() + getHeight() / 2,null);
     }
 
     public static void main(String[] args) {
