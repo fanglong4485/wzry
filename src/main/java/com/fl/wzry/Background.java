@@ -1,0 +1,25 @@
+package com.fl.wzry;
+
+import java.awt.*;
+
+public class Background extends GameObject {
+    Image bg = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/fl/wzry/static/wzry.jpg");
+
+    public Background(GameFrame gameFrame){
+        super(gameFrame);
+    }
+
+    //public void paintSelf(Graphics g){
+    //    g.drawImage(bg,0,0,null);
+    //}
+
+    @Override
+    public Rectangle getRec() {
+        return null;
+    }
+
+    @Override
+    public void pantSelf(Graphics g) {
+        g.drawImage(bg,0,0,null);
+    }
+}
