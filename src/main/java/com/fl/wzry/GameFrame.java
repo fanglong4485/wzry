@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,11 @@ public class GameFrame extends JFrame {
      */
     MinionBlue minionBlue = new MinionBlue(this);
     MinionRed minionRed = new MinionRed(this);
+
+    /**
+     * 防御塔
+     */
+    Turret turret = new Turret(this);
 
     /**
      * 游戏元素列表
@@ -49,7 +55,10 @@ public class GameFrame extends JFrame {
         //添加游戏元素
         objList.add(bg);
         objList.add(player);
-
+        objList.addAll(turret.turretList);
+        for (int i = 0; i < 4; i++) {
+            redList.add(turret.turretList.get(i));
+        }
 
 
         while (true) {
@@ -78,10 +87,6 @@ public class GameFrame extends JFrame {
         for (GameObject gameObject : objList) {
             gameObject.pantSelf(oImage);
         }
-        //bg.pantSelf(oImage);
-        //player.pantSelf(oImage);
-        //minionBlue.pantSelf(oImage);
-        //minionRed.pantSelf(oImage);
         //是英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + getWidth()/2,-player.getY() + getHeight() / 2,null);
     }
