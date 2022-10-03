@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameFrame extends JFrame {
     private int windowWidth = 600;
@@ -22,6 +24,13 @@ public class GameFrame extends JFrame {
     MinionBlue minionBlue = new MinionBlue(this);
     MinionRed minionRed = new MinionRed(this);
 
+    /**
+     * 游戏元素列表
+     */
+    List<GameObject> objList = new ArrayList<>();
+    List<GameObject> redList = new ArrayList<>();
+    List<GameObject> blueList = new ArrayList<>();
+
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;
 
@@ -36,7 +45,17 @@ public class GameFrame extends JFrame {
         setVisible(true);
 
         this.addKeyListener(new GameFrame.KeyMonitor());
+
+        //添加游戏元素
+        objList.add(bg);
+        objList.add(player);
+
+
+
         while (true) {
+            minionBlue.createMinion(this,blueList);
+            //红色同理
+            //minionBlue.createMinion(this,blueList);
             repaint();
             try {
                 Thread.sleep(25);
@@ -55,9 +74,13 @@ public class GameFrame extends JFrame {
             offScreenImage = this.createImage(1600,1200);
         }
         Graphics oImage = offScreenImage.getGraphics();
-        bg.pantSelf(oImage);
-        player.pantSelf(oImage);
-        minionBlue.pantSelf(oImage);
+
+        for (GameObject gameObject : objList) {
+            gameObject.pantSelf(oImage);
+        }
+        //bg.pantSelf(oImage);
+        //player.pantSelf(oImage);
+        //minionBlue.pantSelf(oImage);
         //minionRed.pantSelf(oImage);
         //是英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + 300,-player.getY() + 200,null);
