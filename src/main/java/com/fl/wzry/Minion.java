@@ -73,6 +73,13 @@ public abstract class Minion extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
+        setHp(100);
+        setCurrentHp(100);
+        if (this instanceof MinionBlue){
+            this.addHp(g,17,28,45,10,Color.GREEN);
+        } else {
+            this.addHp(g,17,28,45,10,Color.red);
+        }
         g.drawImage(getImage(),getX()-16,getY()-16,null);
         g.setColor(Color.RED);
         g.fillOval(getX(),getY(),10,10);

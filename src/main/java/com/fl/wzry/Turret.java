@@ -41,6 +41,13 @@ public class Turret extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
+        setHp(1000);
+        setCurrentHp(1000);
+        if (this instanceof TurretRed){
+            this.addHp(g,50,130,100,20,Color.RED);
+        } else {
+            this.addHp(g,50,130,100,20,Color.GREEN);
+        }
         g.drawImage(getImage(),getX() -50,getY()-100,null);
         g.fillOval(getX(),getY(),10,10);
         g.drawRect(getX() -50,getY() -100,100,180);

@@ -92,6 +92,9 @@ public Champion(GameFrame gameFrame) {
 
     @Override
     public void pantSelf(Graphics g) {
+        setHp(1000);
+        setCurrentHp(1000);
+        addHp(g,30,80,80,20,Color.GREEN);
         g.drawImage(getImage(),getX()-32,getY()-50,null);
         g.setColor(Color.GREEN);
         g.fillOval(getX(),getY(),10,10);
