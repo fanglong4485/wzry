@@ -32,6 +32,11 @@ public class Turret extends GameObject{
 
     public Turret(GameFrame gameFrame, int x, int y) {
         super(gameFrame, x, y);
+        setHp(1000);
+        setCurrentHp(getHp());
+        setAttackCoolDownTime(1000);
+        setAttackDistance(300);
+
     }
 
     @Override
@@ -41,15 +46,17 @@ public class Turret extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
-        setHp(1000);
-        setCurrentHp(1000);
+
         if (this instanceof TurretRed){
             this.addHp(g,50,130,100,20,Color.RED);
+            attack(gameFrame.blueList);
         } else {
             this.addHp(g,50,130,100,20,Color.GREEN);
+            attack(gameFrame.redList);
         }
         g.drawImage(getImage(),getX() -50,getY()-100,null);
         g.fillOval(getX(),getY(),10,10);
         g.drawRect(getX() -50,getY() -100,100,180);
+        g.drawOval(getX() - 300,getY()-300,600,600);
     }
 }
