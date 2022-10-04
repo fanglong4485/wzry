@@ -95,7 +95,7 @@ public Champion(GameFrame gameFrame) {
         g.drawImage(getImage(),getX()-32,getY()-50,null);
         g.setColor(Color.GREEN);
         g.fillOval(getX(),getY(),10,10);
-        g.drawRect(getX()-23,getY()-50,60,120);
+        g.drawRect(getX()-32,getY()-50,75,105);
         move();
     }
 
