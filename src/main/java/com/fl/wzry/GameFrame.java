@@ -1,7 +1,9 @@
 package com.fl.wzry;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class GameFrame extends JFrame {
     private Image offScreenImage = null;
 
     //攻击键
-    private Image attBtn = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/fl/wzry/static/attBtn.jpg");
+    private Image attBtnImg = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/fl/wzry/static/attBtn.jpg");
 
 
     private void launch(){
@@ -63,8 +65,14 @@ public class GameFrame extends JFrame {
         for (int i = 0; i < 4; i++) {
             redList.add(turret.turretList.get(i));
         }
-
-
+        JButton attBtn = new JButton();
+        attBtn.setSize(66,60);
+        attBtn.setLocation(720,500 );
+        attBtn.addActionListener(e -> {
+            player.attack(redList);
+            //System.out.println("sdfa");
+        });
+            this.add(attBtn);
         while (true) {
             minionBlue.createMinion(this,blueList);
             //红色同理
@@ -93,9 +101,10 @@ public class GameFrame extends JFrame {
         }
         objList.removeAll(removeList);
         //绘制攻击键,固定在窗口右下角
-        gImage.drawImage(attBtn, player.getX() + getWidth()/2 -70, player.getY() + getHeight() / 2 -70, null);
+        gImage.drawImage(attBtnImg, player.getX() + getWidth()/2 -70, player.getY() + getHeight() / 2 -70, null);
         //英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + getWidth()/2,-player.getY() + getHeight() / 2,null);
+        this.requestFocus();
     }
 
     public static void main(String[] args) {

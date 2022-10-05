@@ -107,6 +107,11 @@ public abstract class GameObject {
                     gameFrame.objList.add(bullet);
                     new AttackCD().start();
                 }
+                else if (Champion.class.isAssignableFrom(getClass())){
+                    Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),100,10);
+                    gameFrame.objList.add(bullet);
+                    new AttackCD().start();
+                }
             }
         }
     }

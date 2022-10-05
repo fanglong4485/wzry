@@ -28,6 +28,8 @@ public Champion(GameFrame gameFrame) {
     setSpd(25);
     setHp(1000);
     setCurrentHp(1000);
+    setAttackDistance(200);
+    setAttackCoolDownTime(1);
 }
 
     public void keyPressed(KeyEvent e){
