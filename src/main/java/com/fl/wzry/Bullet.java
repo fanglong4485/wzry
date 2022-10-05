@@ -44,6 +44,10 @@ public class Bullet extends GameObject{
     }
 
     public void move(){
+        if (recIntersectsRec(getRec(),target.getRec())) {
+            target.setCurrentHp(target.getCurrentHp() - getAd());
+            gameFrame.removeList.add(this);
+        }
         int distance = (int)getDistance(getX(), getY(), target.getX(), target.getY());
         int xSpeed = getSpd() * ((target.getX() - getX()) / distance);
         int ySpeed = getSpd() * ((target.getY() - getY()) / distance);
