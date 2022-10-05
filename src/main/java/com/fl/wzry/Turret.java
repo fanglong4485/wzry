@@ -34,7 +34,7 @@ public class Turret extends GameObject{
         super(gameFrame, x, y);
         setHp(1000);
         setCurrentHp(getHp());
-        setAttackCoolDownTime(1000);
+        setAttackCoolDownTime(500);
         setAttackDistance(150);
 
     }
@@ -56,15 +56,15 @@ public class Turret extends GameObject{
             }
         }
         if (this instanceof TurretRed){
-            this.addHp(g,50,130,100,20,Color.RED);
+            this.addHp(g,17,32,35,10,Color.RED);
             attack(gameFrame.blueList);
         } else {
             this.addHp(g,50,130,100,20,Color.GREEN);
             attack(gameFrame.redList);
         }
-        g.drawImage(getImage(),getX() -50,getY()-100,null);
+        g.drawImage(getImage(),getX() -17,getY()-20,null);
         g.fillOval(getX(),getY(),10,10);
-        g.drawRect(getX() -50,getY() -100,100,180);
+        g.drawRect(getX() -17,getY() -20,35,60);
         g.drawOval(getX() - 150,getY()-150,300,300);
     }
 }
