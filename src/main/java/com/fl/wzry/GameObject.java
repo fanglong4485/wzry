@@ -78,29 +78,29 @@ public abstract class GameObject {
      * @param targetList 红方元素或蓝方元素
      */
     public void attack(List<GameObject> targetList){
-        if (hasTarget){
-            //判断目标是否在攻击范围
-            if (!recIntersectsCir(target.getRec(),getX(),getY(),getAttackDistance())){
-                setHasTarget(false);
-            }
-             else if (!target.alive){
-                setHasTarget(false);
-            }
-            else if (isAttackCoolDown() && isAlive()){
-                Bullet bullet = null;
-                if (Turret.class.isAssignableFrom(getClass())){
-                    bullet = new Bullet(gameFrame,this,getTarget(),50,50);
-                    gameFrame.objList.add(bullet);
-                }
-                new AttackCD().start();
-            }
-
-        }else {
-            for (GameObject gameObject : targetList) {
-                if (recIntersectsCir(gameObject.getRec(),getX(),getY(),getAttackDistance())){
-                    target = gameObject;
+        if (!hasTarget){
+            //从红（蓝）方列表找
+            for (int i = 0; i < targetList.size(); i++) {
+                if (recIntersectsCir(targetList.get(i).getRec(),getX(),getY(),getAttackDistance())){
+                    this.target = targetList.get(i);
                     hasTarget = true;
                     break;
+                }
+            }
+        }else {
+            //判断目标是否在攻击范围
+            if (!recIntersectsCir(this.target.getRec(),getX(),getY(),getAttackDistance())){
+                setHasTarget(false);
+            }
+            if (!this.target.alive){
+                setHasTarget(false);
+            }
+            //可以攻击 && 自己存活
+            else if (isAttackCoolDown() && isAlive()){
+                if (Turret.class.isAssignableFrom(getClass())){
+                    Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),20,10);
+                    gameFrame.objList.add(bullet);
+                    new AttackCD().start();
                 }
             }
         }
@@ -110,7 +110,7 @@ public abstract class GameObject {
         public void run(){
             setAttackCoolDown(false);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(attackCoolDownTime);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

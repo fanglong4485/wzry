@@ -69,7 +69,7 @@ public class GameFrame extends JFrame {
             //minionBlue.createMinion(this,blueList);
             repaint();
             try {
-                Thread.sleep(25);
+                Thread.sleep(30);
             } catch (Exception e) {
                 e.printStackTrace();
             }

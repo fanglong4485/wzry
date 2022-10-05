@@ -25,7 +25,7 @@ public class Bullet extends GameObject{
         super(gameFrame, attacker.getX(), attacker.getY());
         this.attacker = attacker;
         this.target = target;
-        setAd(ad);
+        this.ad = ad;
         setSpd(spd);
     }
 
@@ -36,7 +36,7 @@ public class Bullet extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
-        g.drawImage(getImage(),getX()-16,getY()-16,null);
+        //g.drawImage(getImage(),getX()-16,getY()-16,null);
         g.setColor(Color.BLACK);
         g.fillOval(getX()-5,getY()-5,10,10);
         //g.drawRect(getX()-5,getY()-5,10,10);
@@ -44,14 +44,15 @@ public class Bullet extends GameObject{
     }
 
     public void move(){
+        //子弹接触到目标，扣血并子弹消失
         if (recIntersectsRec(getRec(),target.getRec())) {
             target.setCurrentHp(target.getCurrentHp() - getAd());
             gameFrame.removeList.add(this);
         }
-        int distance = (int)getDistance(getX(), getY(), target.getX(), target.getY());
-        int xSpeed = getSpd() * ((target.getX() - getX()) / distance);
-        int ySpeed = getSpd() * ((target.getY() - getY()) / distance);
-        setX(getX() + xSpeed);
-        setY(getY() + ySpeed);
+        double distance = getDistance(getX(), getY(), target.getX(), target.getY());
+        double xSpeed = getSpd() * ((target.getX() - getX()) / distance);
+        double ySpeed = getSpd() * ((target.getY() - getY()) / distance);
+        setX((int) (getX() + xSpeed));
+        setY((int) (getY() + ySpeed));
     }
 }

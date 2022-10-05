@@ -21,7 +21,7 @@ public abstract class Minion extends GameObject{
         public void run(){
             nextMinion = false;
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             }catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -62,6 +62,7 @@ public abstract class Minion extends GameObject{
             }
             if (minionCount == 3){
                 minionCount = 0;
+                //下一队小兵进入冷却
                 new NextLine().start();
             }
         }
