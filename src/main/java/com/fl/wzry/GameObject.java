@@ -18,6 +18,7 @@ public abstract class GameObject {
     private int attackDistance;
     private int attackCoolDownTime;
     private boolean attackCoolDown = true;
+    private boolean alive = true;
 
     Image image;
 
@@ -72,12 +73,23 @@ public abstract class GameObject {
                 || getDistance(x, y, r.x + r.width, r.y + r.height) < distance;
     }
 
+    /**
+     *
+     * @param targetList 红方元素或蓝方元素
+     */
     public void attack(List<GameObject> targetList){
         if (hasTarget){
-            if (isAttackCoolDown()){
+            //判断目标是否在攻击范围
+            if (!recIntersectsCir(target.getRec(),getX(),getY(),getAttackDistance())){
+                setHasTarget(false);
+            }
+             else if (!target.alive){
+                setHasTarget(false);
+            }
+            else if (isAttackCoolDown() && isAlive()){
                 Bullet bullet = null;
                 if (Turret.class.isAssignableFrom(getClass())){
-                    bullet = new Bullet(gameFrame,this,getTarget(),50,5);
+                    bullet = new Bullet(gameFrame,this,getTarget(),50,50);
                     gameFrame.objList.add(bullet);
                 }
                 new AttackCD().start();
@@ -86,18 +98,10 @@ public abstract class GameObject {
         }else {
             for (GameObject gameObject : targetList) {
                 if (recIntersectsCir(gameObject.getRec(),getX(),getY(),getAttackDistance())){
-                    target = gameFrame.player;
+                    target = gameObject;
                     hasTarget = true;
                     break;
                 }
-            }
-
-            if (!hasTarget && targetList == gameFrame.blueList) {
-                if (recIntersectsCir(gameFrame.player.getRec(),getX(),getY(),getAttackDistance())){
-                    target = gameFrame.player;
-                    hasTarget = true;
-                }
-
             }
         }
     }
