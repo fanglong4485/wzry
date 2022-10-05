@@ -4,14 +4,15 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameFrame extends JFrame {
+    //游戏窗口长宽
     private int windowWidth = 600;
     private int windowHeight = 400;
 
+    //游戏背景（地图）
     Background bg = new Background(this);
 
     /**
@@ -36,6 +37,7 @@ public class GameFrame extends JFrame {
     List<GameObject> objList = new ArrayList<>();
     List<GameObject> redList = new ArrayList<>();
     List<GameObject> blueList = new ArrayList<>();
+    List<GameObject> removeList = new ArrayList<>();
 
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;
@@ -84,9 +86,10 @@ public class GameFrame extends JFrame {
         }
         Graphics oImage = offScreenImage.getGraphics();
 
-        for (GameObject gameObject : objList) {
-            gameObject.pantSelf(oImage);
+        for (int i = 0; i < objList.size(); i++) {
+            objList.get(i).pantSelf(oImage);
         }
+        objList.removeAll(removeList);
         //是英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + getWidth()/2,-player.getY() + getHeight() / 2,null);
     }
