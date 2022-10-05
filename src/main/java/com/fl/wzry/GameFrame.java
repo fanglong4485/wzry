@@ -9,8 +9,8 @@ import java.util.List;
 
 public class GameFrame extends JFrame {
     //游戏窗口长宽
-    private int windowWidth = 600;
-    private int windowHeight = 400;
+    private int windowWidth = 800;
+    private int windowHeight = 600;
 
     //游戏背景（地图）
     Background bg = new Background(this);
@@ -42,6 +42,8 @@ public class GameFrame extends JFrame {
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;
 
+    //攻击键
+    private Image attBtn = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/fl/wzry/static/attBtn.jpg");
 
 
     private void launch(){
@@ -84,13 +86,15 @@ public class GameFrame extends JFrame {
             //加载的图片大小
             offScreenImage = this.createImage(1600,1200);
         }
-        Graphics oImage = offScreenImage.getGraphics();
+        Graphics gImage = offScreenImage.getGraphics();
 
         for (int i = 0; i < objList.size(); i++) {
-            objList.get(i).pantSelf(oImage);
+            objList.get(i).pantSelf(gImage);
         }
         objList.removeAll(removeList);
-        //是英雄固定在屏幕中间
+        //绘制攻击键,固定在窗口右下角
+        gImage.drawImage(attBtn, player.getX() + getWidth()/2 -70, player.getY() + getHeight() / 2 -70, null);
+        //英雄固定在屏幕中间
         g.drawImage(offScreenImage,-player.getX() + getWidth()/2,-player.getY() + getHeight() / 2,null);
     }
 
