@@ -23,8 +23,11 @@ public class MinionBlue extends Minion {
             setY(getY() - getSpd());
         }
         else if (getX() >= 1350){
-            setSpd(2);
-            setY(getY() - getSpd());
+            if (getY() > 325){
+                setSpd(2);
+                setY(getY() - getSpd());
+            }
         }
+
     }
 }
