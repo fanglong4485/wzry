@@ -26,6 +26,8 @@ public Champion(GameFrame gameFrame) {
     setX(175);
     setY(1025);
     setSpd(25);
+    setHp(1000);
+    setCurrentHp(1000);
 }
 
     public void keyPressed(KeyEvent e){
@@ -92,8 +94,11 @@ public Champion(GameFrame gameFrame) {
 
     @Override
     public void pantSelf(Graphics g) {
-        setHp(1000);
-        setCurrentHp(1000);
+        if (getCurrentHp() <= 0){
+            setAlive(false);
+            gameFrame.removeList.add(this);
+
+        }
         addHp(g,30,80,80,20,Color.GREEN);
         g.drawImage(getImage(),getX()-32,getY()-50,null);
         g.setColor(Color.GREEN);
