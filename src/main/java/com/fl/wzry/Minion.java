@@ -11,6 +11,8 @@ public abstract class Minion extends GameObject{
 
     public Minion(GameFrame gameFrame) {
         super(gameFrame);
+        setHp(100);
+        setCurrentHp(100);
     }
 
     public abstract void move();
@@ -45,7 +47,6 @@ public abstract class Minion extends GameObject{
         if (nextLine){
             if (nextMinion){
                 if (minionList == gameFrame.blueList){
-                    //MinionBlue minionBlue = new MinionBlue(gameFrame);
                     MinionBlue minionBlue = new MinionBlue(gameFrame);
                     gameFrame.objList.add(minionBlue);
                     minionList.add(minionBlue);
@@ -73,8 +74,16 @@ public abstract class Minion extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
-        setHp(100);
-        setCurrentHp(100);
+        if (getCurrentHp() <= 0){
+            setAlive(false);
+            gameFrame.removeList.add(this);
+            if (this instanceof MinionBlue){
+                gameFrame.blueList.remove(this);
+            } else {
+                gameFrame.redList.remove(this);
+            }
+        }
+
         if (this instanceof MinionBlue){
             this.addHp(g,17,28,45,10,Color.GREEN);
         } else {
