@@ -1,6 +1,10 @@
 package com.fl.wzry;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Minion extends GameObject{
@@ -8,14 +12,27 @@ public abstract class Minion extends GameObject{
     private boolean nextMinion = true;
     private boolean nextLine = true;
     private int minionCount = 0;
+    @Getter
+    @Setter
+    private boolean isFindTarget = false;
 
     public Minion(GameFrame gameFrame) {
         super(gameFrame);
         setHp(100);
         setCurrentHp(100);
+        setAttackDistance(75);
+        setAttackCoolDownTime(1000);
     }
 
-    public abstract void move();
+    public abstract void move(List<GameObject> objList);
+
+    public void moveToTarget(){
+        double distance = getDistance(getX(), getY(), getTarget().getX(), getTarget().getY());
+        double xSpeed = getSpd() * ((getTarget().getX() - getX()) / distance);
+        double ySpeed = getSpd() * ((getTarget().getY() - getY()) / distance);
+        setX((int) (getX() + xSpeed));
+        setY((int) (getY() + ySpeed));
+    }
 
     class NextMinion extends Thread{
         public void run(){
@@ -68,6 +85,19 @@ public abstract class Minion extends GameObject{
         }
     }
 
+    public void findTarget(ArrayList<GameObject> objectList){
+        for (GameObject obj : objectList) {
+            if (recIntersectsCir(obj.getRec(),getX(),getY(),125)){
+                setTarget(obj);
+                this.isFindTarget = true;
+            }
+        }
+        //if (recIntersectsCir(gameFrame.player.getRec(),getX(),getY(),125)){
+        //    setTarget(gameFrame.player);
+        //    this.isFindTarget = true;
+        //}
+    }
+
     @Override
     public Rectangle getRec() {
        return new Rectangle(getX()-16,getY()-16,45,45);
@@ -87,13 +117,14 @@ public abstract class Minion extends GameObject{
 
         if (this instanceof MinionBlue){
             this.addHp(g,17,28,45,10,Color.GREEN);
+            move(gameFrame.redList);
         } else {
             this.addHp(g,17,28,45,10,Color.red);
+            move(gameFrame.blueList);
         }
         g.drawImage(getImage(),getX()-16,getY()-16,null);
         g.setColor(Color.RED);
         g.fillOval(getX(),getY(),10,10);
         g.drawRect(getX()-16,getY()-16,45,45);
-        move();
     }
 }

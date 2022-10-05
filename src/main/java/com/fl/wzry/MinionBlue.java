@@ -1,5 +1,8 @@
 package com.fl.wzry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MinionBlue extends Minion {
     public MinionBlue(GameFrame gameFrame) {
         super(gameFrame);
@@ -11,21 +14,37 @@ public class MinionBlue extends Minion {
     }
 
     @Override
-    public void move() {
+    public void move(List<GameObject> objList) {
         //325.1025  1200.1025  1375.950 1375.350
-        if (getX()< 1200 ){
-            //setSpd(5);
-            setX(getX() + getSpd());
+
+        if (isFindTarget()){
+            //离开检测范围
+            if(!recIntersectsCir(getTarget().getRec(),getX(),getY(),125)){
+                setFindTarget(false);
+            }
+            else {
+                if (!isHasTarget()){
+                    moveToTarget();
+                }
+                attack(objList);
+            }
         }
-        else if (getX() >= 1200 && getX() < 1350){
-            setSpd(2);
-            setX(getX() + getSpd());
-            setY(getY() - getSpd());
-        }
-        else if (getX() >= 1350){
-            if (getY() > 325){
+        else {
+            findTarget((ArrayList<GameObject>) objList);
+            if (getX()< 1200 ){
+                //setSpd(5);
+                setX(getX() + getSpd());
+            }
+            else if (getX() >= 1200 && getX() < 1350){
                 setSpd(2);
+                setX(getX() + getSpd());
                 setY(getY() - getSpd());
+            }
+            else if (getX() >= 1350){
+                if (getY() > 325){
+                    setSpd(2);
+                    setY(getY() - getSpd());
+                }
             }
         }
 

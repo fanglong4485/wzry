@@ -98,7 +98,12 @@ public abstract class GameObject {
             //可以攻击 && 自己存活
             else if (isAttackCoolDown() && isAlive()){
                 if (Turret.class.isAssignableFrom(getClass())){
-                    Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),20,10);
+                    Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),75,10);
+                    gameFrame.objList.add(bullet);
+                    new AttackCD().start();
+                }
+                else if (Minion.class.isAssignableFrom(getClass())){
+                    Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),50,10);
                     gameFrame.objList.add(bullet);
                     new AttackCD().start();
                 }

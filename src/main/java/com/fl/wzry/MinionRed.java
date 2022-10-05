@@ -1,5 +1,7 @@
 package com.fl.wzry;
 
+import java.util.List;
+
 public class MinionRed extends Minion  {
     public MinionRed(GameFrame gameFrame) {
         super(gameFrame);
@@ -7,7 +9,8 @@ public class MinionRed extends Minion  {
     }
 
     @Override
-    public void move() {
+    public void move(List<GameObject> objList) {
 
     }
+
 }
