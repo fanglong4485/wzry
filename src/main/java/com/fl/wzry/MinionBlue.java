@@ -14,7 +14,7 @@ public class MinionBlue extends Minion {
     }
 
     @Override
-    public void move(List<GameObject> objList) {
+    public void move(List<GameObject> redList) {
         //325.1025  1200.1025  1375.950 1375.350
 
         if (isFindTarget()){
@@ -22,15 +22,21 @@ public class MinionBlue extends Minion {
             if(!recIntersectsCir(getTarget().getRec(),getX(),getY(),125)){
                 setFindTarget(false);
             }
+            //在检测范围内
             else {
+                //没有攻击目标,向目标移动直至至标记攻击目标
                 if (!isHasTarget()){
                     moveToTarget();
+                } else if (getTarget().isAlive()){
+                    attack(redList);
                 }
-                attack(objList);
+                else {
+                    setFindTarget(false);
+                }
             }
         }
         else {
-            findTarget((ArrayList<GameObject>) objList);
+            findTarget((ArrayList<GameObject>) redList);
             if (getX()< 1200 ){
                 //setSpd(5);
                 setX(getX() + getSpd());

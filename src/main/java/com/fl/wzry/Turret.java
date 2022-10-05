@@ -32,7 +32,7 @@ public class Turret extends GameObject{
 
     public Turret(GameFrame gameFrame, int x, int y) {
         super(gameFrame, x, y);
-        setHp(1000);
+        setHp(100);
         setCurrentHp(getHp());
         setAttackCoolDownTime(500);
         setAttackDistance(150);

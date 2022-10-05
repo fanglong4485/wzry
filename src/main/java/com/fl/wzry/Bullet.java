@@ -47,6 +47,9 @@ public class Bullet extends GameObject{
         //子弹接触到目标，扣血并子弹消失
         if (recIntersectsRec(getRec(),target.getRec())) {
             target.setCurrentHp(target.getCurrentHp() - getAd());
+            if (target.getCurrentHp() <= 0){
+                attacker.setHasTarget(false);
+            }
             gameFrame.removeList.add(this);
         }
         double distance = getDistance(getX(), getY(), target.getX(), target.getY());

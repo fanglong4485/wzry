@@ -27,11 +27,17 @@ public abstract class Minion extends GameObject{
     public abstract void move(List<GameObject> objList);
 
     public void moveToTarget(){
-        double distance = getDistance(getX(), getY(), getTarget().getX(), getTarget().getY());
-        double xSpeed = getSpd() * ((getTarget().getX() - getX()) / distance);
-        double ySpeed = getSpd() * ((getTarget().getY() - getY()) / distance);
-        setX((int) (getX() + xSpeed));
-        setY((int) (getY() + ySpeed));
+        //如果不在攻击范围内
+        if (!recIntersectsCir(getTarget().getRec(),getX(),getY(),75)){
+            double distance = getDistance(getX(), getY(), getTarget().getX(), getTarget().getY());
+            double xSpeed = getSpd() * ((getTarget().getX() - getX()) / distance);
+            double ySpeed = getSpd() * ((getTarget().getY() - getY()) / distance);
+            setX((int) (getX() + xSpeed));
+            setY((int) (getY() + ySpeed));
+        }
+        else {
+            setHasTarget(true);
+        }
     }
 
     class NextMinion extends Thread{
