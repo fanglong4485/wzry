@@ -11,10 +11,10 @@ public class Turret extends GameObject{
     public Turret turretRed2;
     public Turret turretRed3;
     public Turret turretRedBase;
-    //public Turret turretBlue5;
-    //public Turret turretBlue6;
-    //public Turret turretBlue7;
-    //public Turret turretBlueBase;
+    public Turret turretBlue1;
+    public Turret turretBlue2;
+    public Turret turretBlue3;
+    public Turret turretBlueBase;
     public Turret(GameFrame gameFrame) {
         super(gameFrame);
         //setImage("src/main/resources/com/fl/wzry/static/turret.jpg");
@@ -23,10 +23,10 @@ public class Turret extends GameObject{
         turretList.add(turretRed3 = new TurretRed(gameFrame,525,200));
         turretList.add(turretRedBase = new TurretRed(gameFrame,1300,250));
         //蓝色同理
-        //turretList.add(turretRed1 = new TurretRed(gameFrame,1050,1000));
-        //turretList.add(turretRed2 = new TurretRed(gameFrame,650,675));
-        //turretList.add(turretRed3 = new TurretRed(gameFrame,225,400));
-        //turretList.add(turretRedBase = new TurretRed(gameFrame,300,925));
+        turretList.add(turretBlue1 = new TurretBlue(gameFrame,1050,1000));
+        turretList.add(turretBlue2 = new TurretBlue(gameFrame,650,675));
+        turretList.add(turretBlue3 = new TurretBlue(gameFrame,225,400));
+        turretList.add(turretBlueBase = new TurretBlue(gameFrame,300,925));
 
     }
 
