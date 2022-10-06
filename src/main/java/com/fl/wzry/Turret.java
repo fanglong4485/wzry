@@ -59,7 +59,7 @@ public class Turret extends GameObject{
             this.addHp(g,17,32,35,10,Color.RED);
             attack(gameFrame.blueList);
         } else {
-            this.addHp(g,50,130,100,20,Color.GREEN);
+            this.addHp(g,17,32,35,10,Color.GREEN);
             attack(gameFrame.redList);
         }
         g.drawImage(getImage(),getX() -17,getY()-20,null);
