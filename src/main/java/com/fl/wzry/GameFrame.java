@@ -74,7 +74,7 @@ public class GameFrame extends JFrame {
         });
             this.add(attBtn);
         while (true) {
-            //minionBlue.createMinion(this,blueList);
+            minionBlue.createMinion(this,blueList);
             //红色同理
             minionRed.createMinion(this,redList);
             repaint();
