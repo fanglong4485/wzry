@@ -74,9 +74,9 @@ public class GameFrame extends JFrame {
         });
             this.add(attBtn);
         while (true) {
-            minionBlue.createMinion(this,blueList);
-            //红色同理
             //minionBlue.createMinion(this,blueList);
+            //红色同理
+            minionRed.createMinion(this,redList);
             repaint();
             try {
                 Thread.sleep(30);
@@ -89,7 +89,7 @@ public class GameFrame extends JFrame {
     }
 
     public void paint(Graphics g){
-        //System.out.println("玩家位置："+player.getX() + ","+ player.getY());
+        System.out.println("玩家位置："+player.getX() + ","+ player.getY());
         if (offScreenImage == null){
             //加载的图片大小
             offScreenImage = this.createImage(1600,1200);

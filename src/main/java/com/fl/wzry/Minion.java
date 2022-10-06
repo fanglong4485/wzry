@@ -75,11 +75,11 @@ public abstract class Minion extends GameObject{
                     minionList.add(minionBlue);
                 }
                 //红色小兵同理
-                //if (minionList == this.gameFrame.objList){
-                //    MinionBlue minionBlue = new MinionBlue(gameFrame);
-                //    gameFrame.objList.add(minionBlue);
-                //    minionList.add(minionBlue);
-                //}
+                if (minionList == this.gameFrame.redList){
+                    MinionRed minionRed = new MinionRed(gameFrame);
+                    gameFrame.objList.add(minionRed);
+                    minionList.add(minionRed);
+                }
                 minionCount ++;
                 new NextMinion().start();
             }
