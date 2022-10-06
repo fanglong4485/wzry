@@ -126,6 +126,7 @@ public abstract class Minion extends GameObject{
             move(gameFrame.redList);
         } else {
             this.addHp(g,17,28,45,10,Color.red);
+            gameFrame.blueList.add(gameFrame.player);
             move(gameFrame.blueList);
         }
         g.drawImage(getImage(),getX()-16,getY()-16,null);

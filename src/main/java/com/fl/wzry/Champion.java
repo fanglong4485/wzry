@@ -91,7 +91,7 @@ public Champion(GameFrame gameFrame) {
 
     @Override
     public Rectangle getRec() {
-        return new Rectangle(getX(),getY(),0,0);
+        return new Rectangle(getX()-32,getY()-50,75,105);
     }
 
     @Override
