@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
     /**
      * 添加玩家
      */
-    Champion player = new Champion(this);
+    Champion player = new ChampionDaji(this);
 
     /**
      * 添加小兵
@@ -44,7 +44,7 @@ public class GameFrame extends JFrame {
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;
 
-    //攻击键
+    //攻击键图片
     private Image attBtnImg = Toolkit.getDefaultToolkit().getImage("src/main/resources/com/fl/wzry/static/attBtn.jpg");
 
 
@@ -72,7 +72,8 @@ public class GameFrame extends JFrame {
             player.attack(redList);
             //System.out.println("sdfa");
         });
-            this.add(attBtn);
+        this.add(attBtn);
+        player.addBtn();
         while (true) {
             minionBlue.createMinion(this,blueList);
             //红色同理
@@ -89,7 +90,7 @@ public class GameFrame extends JFrame {
     }
 
     public void paint(Graphics g){
-        System.out.println("玩家位置："+player.getX() + ","+ player.getY());
+        //System.out.println("玩家位置："+player.getX() + ","+ player.getY());
         if (offScreenImage == null){
             //加载的图片大小
             offScreenImage = this.createImage(1600,1200);

@@ -1,7 +1,11 @@
 package com.fl.wzry;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -10,8 +14,20 @@ public class Champion extends GameObject{
 
     public boolean up,down,left,right;
 
+    /** 移动图集*/
     static String[]  imgs = new String[8];
     int moveCount = 1;
+
+    /** 技能图片*/
+    @Getter
+    @Setter
+    private Image abilityOne;
+    @Getter
+    @Setter
+    private Image abilityTwo;
+    @Getter
+    @Setter
+    private Image abilityThree;
 
     static {
         for (int i = 1; i < 2; i++) {
@@ -100,13 +116,47 @@ public Champion(GameFrame gameFrame) {
             setAlive(false);
             gameFrame.removeList.add(this);
 
+        } else {
+            addHp(g,30,80,80,20,Color.GREEN);
+            g.drawImage(getImage(),getX()-32,getY()-50,null);
+            g.setColor(Color.GREEN);
+            g.fillOval(getX(),getY(),10,10);
+            g.drawRect(getX()-32,getY()-50,75,105);
+            //绘制一技能图片
+            g.drawImage(abilityOne,gameFrame.player.getX() + gameFrame.getWidth()/2 -150, gameFrame.player.getY() + gameFrame.getHeight() / 2 -70, null);
+            g.drawImage(abilityTwo,gameFrame.player.getX() + gameFrame.getWidth()/2 -150, gameFrame.player.getY() + gameFrame.getHeight() / 2 -150, null);
+            g.drawImage(abilityThree,gameFrame.player.getX() + gameFrame.getWidth()/2 -70, gameFrame.player.getY() + gameFrame.getHeight() / 2 -150, null);
+            move();
         }
-        addHp(g,30,80,80,20,Color.GREEN);
-        g.drawImage(getImage(),getX()-32,getY()-50,null);
-        g.setColor(Color.GREEN);
-        g.fillOval(getX(),getY(),10,10);
-        g.drawRect(getX()-32,getY()-50,75,105);
-        move();
+    }
+
+    /**
+     * 添加技能按钮
+     */
+    public void addBtn(){
+        JButton btn1 = new JButton();
+        btn1.setSize(76,74);
+        btn1.setLocation(640,500);
+        btn1.addActionListener(e->{
+            System.out.println("daji 11111");
+        });
+        gameFrame.add(btn1);
+
+        JButton btn2 = new JButton();
+        btn2.setSize(76,74);
+        btn2.setLocation(640,420);
+        btn2.addActionListener(e->{
+            System.out.println("daji 2222222");
+        });
+        gameFrame.add(btn2);
+
+        JButton btn3 = new JButton();
+        btn3.setSize(76,74);
+        btn3.setLocation(720,420);
+        btn3.addActionListener(e->{
+            System.out.println("daji 3333333");
+        });
+        gameFrame.add(btn3);
     }
 
 
