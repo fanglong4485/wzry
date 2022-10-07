@@ -1,4 +1,6 @@
-package com.fl.wzry;
+package com.fl.wzry.frame;
+
+import com.fl.wzry.elements.GameObject;
 
 import java.awt.*;
 

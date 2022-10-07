@@ -1,5 +1,6 @@
-package com.fl.wzry;
+package com.fl.wzry.elements;
 
+import com.fl.wzry.frame.GameFrame;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,7 @@ public class Bullet extends GameObject{
     @Setter
     private int ad;
 
-    public Bullet(GameFrame gameFrame, GameObject attacker,GameObject target,int ad, int spd,String img) {
+    public Bullet(GameFrame gameFrame, GameObject attacker, GameObject target, int ad, int spd, String img) {
         super(gameFrame, attacker.getX(), attacker.getY());
         this.attacker = attacker;
         this.target = target;

@@ -1,5 +1,7 @@
-package com.fl.wzry;
+package com.fl.wzry.minion;
 
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.elements.GameObject;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Minion extends GameObject{
+public abstract class Minion extends GameObject {
 
     private boolean nextMinion = true;
     private boolean nextLine = true;
@@ -75,7 +77,7 @@ public abstract class Minion extends GameObject{
                     minionList.add(minionBlue);
                 }
                 //红色小兵同理
-                if (minionList == this.gameFrame.redList){
+                if (minionList == this.getGameFrame().redList){
                     MinionRed minionRed = new MinionRed(gameFrame);
                     gameFrame.objList.add(minionRed);
                     minionList.add(minionRed);

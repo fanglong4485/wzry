@@ -1,4 +1,7 @@
-package com.fl.wzry;
+package com.fl.wzry.minion;
+
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.elements.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;

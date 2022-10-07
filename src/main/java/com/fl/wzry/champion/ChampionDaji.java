@@ -1,5 +1,9 @@
-package com.fl.wzry;
+package com.fl.wzry.champion;
 
+import com.fl.wzry.elements.Bullet;
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.elements.GameObject;
+import com.fl.wzry.minion.MinionRed;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ChampionDaji extends Champion{
+public class ChampionDaji extends ChampionBase {
 
     /** 鼠标监视器 */
     MouseMonitor m;

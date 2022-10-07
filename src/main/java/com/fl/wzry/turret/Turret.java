@@ -1,12 +1,15 @@
-package com.fl.wzry;
+package com.fl.wzry.turret;
+
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.elements.GameObject;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Turret extends GameObject{
+public class Turret extends GameObject {
 
-   List<Turret> turretList = new ArrayList<Turret>();
+   public List<Turret> turretList = new ArrayList<Turret>();
     public Turret turretRed1;
     public Turret turretRed2;
     public Turret turretRed3;

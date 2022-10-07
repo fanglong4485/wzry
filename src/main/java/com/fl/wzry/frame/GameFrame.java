@@ -1,9 +1,14 @@
-package com.fl.wzry;
+package com.fl.wzry.frame;
+
+import com.fl.wzry.elements.GameObject;
+import com.fl.wzry.champion.ChampionBase;
+import com.fl.wzry.champion.ChampionDaji;
+import com.fl.wzry.minion.MinionBlue;
+import com.fl.wzry.minion.MinionRed;
+import com.fl.wzry.turret.Turret;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -20,7 +25,7 @@ public class GameFrame extends JFrame {
     /**
      * 添加玩家
      */
-    Champion player = new ChampionDaji(this);
+    public ChampionBase player = new ChampionDaji(this);
 
     /**
      * 添加小兵
@@ -36,10 +41,10 @@ public class GameFrame extends JFrame {
     /**
      * 游戏元素列表
      */
-    List<GameObject> objList = new ArrayList<>();
-    List<GameObject> redList = new ArrayList<>();
-    List<GameObject> blueList = new ArrayList<>();
-    List<GameObject> removeList = new ArrayList<>();
+    public List<GameObject> objList = new ArrayList<>();
+    public List<GameObject> redList = new ArrayList<>();
+    public List<GameObject> blueList = new ArrayList<>();
+    public List<GameObject> removeList = new ArrayList<>();
 
     //双缓冲用，防止闪烁
     private Image offScreenImage = null;

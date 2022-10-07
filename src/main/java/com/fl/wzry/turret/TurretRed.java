@@ -1,4 +1,6 @@
-package com.fl.wzry;
+package com.fl.wzry.turret;
+
+import com.fl.wzry.frame.GameFrame;
 
 public class TurretRed extends Turret{
 

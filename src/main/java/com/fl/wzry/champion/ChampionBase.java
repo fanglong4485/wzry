@@ -1,6 +1,7 @@
-package com.fl.wzry;
+package com.fl.wzry.champion;
 
-import lombok.Data;
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.elements.GameObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 @EqualsAndHashCode(callSuper = true)
-public abstract class Champion extends GameObject{
+public abstract class ChampionBase extends GameObject {
 
     public boolean up,down,left,right;
 
@@ -42,7 +43,7 @@ public abstract class Champion extends GameObject{
     public abstract void abilityEffect(Graphics g);
 
 
-public Champion(GameFrame gameFrame) {
+public ChampionBase(GameFrame gameFrame) {
     super(gameFrame);
     setImage("src/main/resources/com/fl/wzry/static/champion.jpg");
     setX(175);

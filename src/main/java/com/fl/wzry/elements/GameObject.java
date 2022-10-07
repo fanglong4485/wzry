@@ -1,5 +1,9 @@
-package com.fl.wzry;
+package com.fl.wzry.elements;
 
+import com.fl.wzry.champion.ChampionBase;
+import com.fl.wzry.frame.GameFrame;
+import com.fl.wzry.minion.Minion;
+import com.fl.wzry.turret.Turret;
 import lombok.Data;
 
 import java.awt.*;
@@ -22,7 +26,7 @@ public abstract class GameObject {
 
     Image image;
 
-    GameFrame gameFrame;
+    public GameFrame gameFrame;
 
     public GameObject(GameFrame gameFrame){
         this.gameFrame = gameFrame;
@@ -107,7 +111,7 @@ public abstract class GameObject {
                     gameFrame.objList.add(bullet);
                     new AttackCD().start();
                 }
-                else if (Champion.class.isAssignableFrom(getClass())){
+                else if (ChampionBase.class.isAssignableFrom(getClass())){
                     Bullet bullet = new Bullet(gameFrame,this,this.getTarget(),100,10);
                     gameFrame.objList.add(bullet);
                     new AttackCD().start();
