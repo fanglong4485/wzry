@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 @EqualsAndHashCode(callSuper = true)
-public class Champion extends GameObject{
+public abstract class Champion extends GameObject{
 
     public boolean up,down,left,right;
 
@@ -34,6 +34,12 @@ public class Champion extends GameObject{
             imgs[i] = "src/main/resources/com/fl/wzry/static/move/" + i + ".jpg";
         }
     }
+
+    /**技能方法 */
+    public abstract void abilityOne();
+    public abstract void abilityTwo();
+    public abstract void abilityThree();
+    public abstract void abilityEffect(Graphics g);
 
 
 public Champion(GameFrame gameFrame) {
@@ -127,6 +133,7 @@ public Champion(GameFrame gameFrame) {
             g.drawImage(abilityTwo,gameFrame.player.getX() + gameFrame.getWidth()/2 -150, gameFrame.player.getY() + gameFrame.getHeight() / 2 -150, null);
             g.drawImage(abilityThree,gameFrame.player.getX() + gameFrame.getWidth()/2 -70, gameFrame.player.getY() + gameFrame.getHeight() / 2 -150, null);
             move();
+            abilityEffect(g);
         }
     }
 
@@ -138,7 +145,7 @@ public Champion(GameFrame gameFrame) {
         btn1.setSize(76,74);
         btn1.setLocation(640,500);
         btn1.addActionListener(e->{
-            System.out.println("daji 11111");
+            abilityOne();
         });
         gameFrame.add(btn1);
 
@@ -146,7 +153,7 @@ public Champion(GameFrame gameFrame) {
         btn2.setSize(76,74);
         btn2.setLocation(640,420);
         btn2.addActionListener(e->{
-            System.out.println("daji 2222222");
+            abilityTwo();
         });
         gameFrame.add(btn2);
 
@@ -154,7 +161,7 @@ public Champion(GameFrame gameFrame) {
         btn3.setSize(76,74);
         btn3.setLocation(720,420);
         btn3.addActionListener(e->{
-            System.out.println("daji 3333333");
+           abilityThree();
         });
         gameFrame.add(btn3);
     }

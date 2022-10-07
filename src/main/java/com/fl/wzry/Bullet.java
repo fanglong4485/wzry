@@ -17,8 +17,13 @@ public class Bullet extends GameObject{
     @Setter
     private int ad;
 
-    public Bullet(GameFrame gameFrame) {
-        super(gameFrame);
+    public Bullet(GameFrame gameFrame, GameObject attacker,GameObject target,int ad, int spd,String img) {
+        super(gameFrame, attacker.getX(), attacker.getY());
+        this.attacker = attacker;
+        this.target = target;
+        this.ad = ad;
+        setSpd(spd);
+        setImage(img);
     }
 
     public Bullet(GameFrame gameFrame, GameObject attacker,GameObject target,int ad, int spd ) {
@@ -36,9 +41,10 @@ public class Bullet extends GameObject{
 
     @Override
     public void pantSelf(Graphics g) {
-        //g.drawImage(getImage(),getX()-16,getY()-16,null);
+
         g.setColor(Color.BLACK);
         g.fillOval(getX()-5,getY()-5,10,10);
+        g.drawImage(getImage(),getX()-15,getY()-15,null);
         //g.drawRect(getX()-5,getY()-5,10,10);
         move();
     }
